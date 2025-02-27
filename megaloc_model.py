@@ -70,52 +70,18 @@ class Aggregator(nn.Module):
 
 
 class DINOv2(nn.Module):
-    def __init__(self, num_trainable_blocks=4, norm_layer=True, return_token=True):
+    def __init__(self):
         super().__init__()
         self.model = torch.hub.load("facebookresearch/dinov2", "dinov2_vitb14")
         self.num_channels = 768
-        self.num_trainable_blocks = num_trainable_blocks
-        self.norm_layer = norm_layer
-        self.return_token = return_token
 
-    def forward(self, x):
-        """
-        The forward method for the DINOv2 class
-
-        Parameters:
-            x (torch.Tensor): The input tensor [B, 3, H, W]. H and W should be divisible by 14.
-
-        Returns:
-            f (torch.Tensor): The feature map [B, C, H // 14, W // 14].
-            t (torch.Tensor): The token [B, C]. This is only returned if return_token is True.
-        """
-
-        B, C, H, W = x.shape
-
-        x = self.model.prepare_tokens_with_masks(x)
-
-        # First blocks are frozen
-        with torch.no_grad():
-            for blk in self.model.blocks[: -self.num_trainable_blocks]:
-                x = blk(x)
-        x = x.detach()
-
-        # Last blocks are trained
-        for blk in self.model.blocks[-self.num_trainable_blocks :]:
-            x = blk(x)
-
-        if self.norm_layer:
-            x = self.model.norm(x)
-
-        t = x[:, 0]
-        f = x[:, 1:]
-
-        # Reshape to (B, C, H, W)
-        f = f.reshape((B, H // 14, W // 14, self.num_channels)).permute(0, 3, 1, 2)
-
-        if self.return_token:
-            return f, t
-        return f
+    def forward(self, images):
+        B, C, H, W = images.shape
+        output = self.model.forward_features(images)
+        cls_token = output["x_norm_clstoken"]
+        features = output["x_norm_patchtokens"]
+        features = features.reshape((B, H // 14, W // 14, self.num_channels)).permute(0, 3, 1, 2)
+        return features, cls_token
 
 
 # Code adapted from OpenGlue, MIT license
