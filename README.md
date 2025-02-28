@@ -1,5 +1,7 @@
 # MegaLoc
-An image retrieval model for any localization task, which achieves SOTA on most VPR datasets, including indoor and outdoor ones. [Link to paper](https://arxiv.org/abs/2502.17237)
+An image retrieval model for any localization task, which achieves SOTA on most VPR datasets, including indoor and outdoor ones.
+
+[ArXiv](https://arxiv.org/abs/2502.17237) - [Paper on ArXiv](https://arxiv.org/pdf/2502.17237) - [Paper on HF](https://huggingface.co/papers/2502.17237) - [Model on HF](https://huggingface.co/gberton/MegaLoc).
 
 ### Using the model
 You can use the model with torch.hub, as simple as this
