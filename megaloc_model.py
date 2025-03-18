@@ -72,7 +72,7 @@ class Aggregator(nn.Module):
 class DINOv2(nn.Module):
     def __init__(self):
         super().__init__()
-        self.model = torch.hub.load("facebookresearch/dinov2", "dinov2_vitb14")
+        self.model = torch.hub.load("facebookresearch/dinov2", "dinov2_vitb14", pretrained=False)
         self.num_channels = 768
 
     def forward(self, images):
