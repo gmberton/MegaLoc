@@ -17,3 +17,20 @@ Here are some examples of top-1 retrieved images from the SF-XL test set, which 
 
 ![teaser](https://github.com/user-attachments/assets/a90b8d4c-ab53-4151-aacc-93493d583713)
 
+
+
+## Acknowledgements / Cite / BibTex
+
+If you use this repository please cite the following
+```
+@misc{berton_2025_megaloc,
+      title={MegaLoc: One Retrieval to Place Them All}, 
+      author={Gabriele Berton and Carlo Masone},
+      year={2025},
+      eprint={2502.17237},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2502.17237}, 
+}
+```
+
