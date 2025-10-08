@@ -29,14 +29,13 @@ Here are some examples of top-1 retrieved images from the SF-XL test set, which 
 
 If you use this repository please cite the following
 ```
-@misc{berton_2025_megaloc,
-      title={MegaLoc: One Retrieval to Place Them All}, 
-      author={Gabriele Berton and Carlo Masone},
-      year={2025},
-      eprint={2502.17237},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2502.17237}, 
+@InProceedings{Berton_2025_CVPR,
+    author    = {Berton, Gabriele and Masone, Carlo},
+    title     = {MegaLoc: One Retrieval to Place Them All},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops},
+    month     = {June},
+    year      = {2025},
+    pages     = {2861-2867}
 }
 ```
 
