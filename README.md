@@ -1,7 +1,7 @@
 # MegaLoc
 An image retrieval model for any localization task, which achieves SOTA on most VPR datasets, including indoor and outdoor ones.
 
-[Gradio Demo](https://11fc3a5b420e6672fe.gradio.live/) - [ArXiv](https://arxiv.org/abs/2502.17237) - [Paper on ArXiv](https://arxiv.org/pdf/2502.17237) - [Paper on HF](https://huggingface.co/papers/2502.17237) - [Model on HF](https://huggingface.co/gberton/MegaLoc).
+[Gradio Demo](https://1439ae64a87a7ee985.gradio.live/) - [ArXiv](https://arxiv.org/abs/2502.17237) - [Paper on ArXiv](https://arxiv.org/pdf/2502.17237) - [Paper on HF](https://huggingface.co/papers/2502.17237) - [Model on HF](https://huggingface.co/gberton/MegaLoc).
 
 ### Demo
 Try the demo on your own images to see how good MegaLoc is! The demo uses a database of ~5M street-view images from San Francisco, and when you upload one it will find the most similar one from the same place.
