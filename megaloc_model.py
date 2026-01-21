@@ -362,7 +362,7 @@ class DINOv2(nn.Module):
         x = self.patch_embed(images)
         cls_tokens = self.cls_token.expand(B, -1, -1)
         x = torch.cat((cls_tokens, x), dim=1)
-        x = x + self.interpolate_pos_encoding(x, W, H)
+        x = x + self.interpolate_pos_encoding(x, H, W)
 
         for block in self.blocks:
             x = block(x)
