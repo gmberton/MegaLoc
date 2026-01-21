@@ -15,7 +15,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torchvision.transforms.functional as tfm
-from huggingface_hub import PyTorchModelHubMixin
 
 
 # Code adapted from OpenGlue, MIT license
@@ -404,7 +403,7 @@ class Aggregator(nn.Module):
         return self.linear(x)
 
 
-class MegaLoc(nn.Module, PyTorchModelHubMixin):
+class MegaLoc(nn.Module):
     """MegaLoc: Unified visual place recognition model.
 
     Combines a DINOv2 Vision Transformer backbone with optimal transport-based
