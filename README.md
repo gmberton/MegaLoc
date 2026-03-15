@@ -28,14 +28,14 @@ Here are some examples of top-1 retrieved images from the SF-XL test set, which 
 ## Acknowledgements / Cite / BibTex
 
 If you use this repository please cite the following
-```
-@InProceedings{Berton_2025_CVPR,
+```bibtex
+@inproceedings{Berton_2025_MegaLoc,
     author    = {Berton, Gabriele and Masone, Carlo},
     title     = {MegaLoc: One Retrieval to Place Them All},
-    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops},
+    booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops},
     month     = {June},
     year      = {2025},
-    pages     = {2861-2867}
+    pages     = {2886--2892}
 }
 ```
 
