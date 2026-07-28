@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use MegaLoc, please cite the paper below."
+title: "MegaLoc: One Retrieval to Place Them All"
+authors:
+  - family-names: Berton
+    given-names: Gabriele
+  - family-names: Masone
+    given-names: Carlo
+repository-code: "https://github.com/gmberton/MegaLoc"
+license: MIT
+preferred-citation:
+  type: conference-paper
+  title: "MegaLoc: One Retrieval to Place Them All"
+  authors:
+    - family-names: Berton
+      given-names: Gabriele
+    - family-names: Masone
+      given-names: Carlo
+  collection-title: "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops"
+  year: 2025
+  start: 2886
+  end: 2892

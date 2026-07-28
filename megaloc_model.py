@@ -142,13 +142,10 @@ class FeatureAggregator(nn.Module):
         p = torch.exp(p)
         p = p[:, :-1, :]
 
-        p = p.unsqueeze(1).repeat(1, self.cluster_dim, 1, 1)
-        f = f.unsqueeze(2).repeat(1, 1, self.num_clusters, 1)
-
         f = torch.cat(
             [
                 F.normalize(t, p=2, dim=-1),
-                F.normalize((f * p).sum(dim=-1), p=2, dim=1).flatten(1),
+                F.normalize(torch.einsum("bdn,bkn->bdk", f, p), p=2, dim=1).flatten(1),
             ],
             dim=-1,
         )
@@ -212,11 +209,8 @@ class MultiHeadAttention(nn.Module):
         qkv = qkv.permute(2, 0, 3, 1, 4)
         q, k, v = qkv[0], qkv[1], qkv[2]
 
-        attn = (q @ k.transpose(-2, -1)) * self.scale
-        attn = attn.softmax(dim=-1)
-        attn = self.attn_drop(attn)
-
-        x = (attn @ v).transpose(1, 2).reshape(B, N, C)
+        x = F.scaled_dot_product_attention(q, k, v, dropout_p=self.attn_drop.p if self.training else 0.0)
+        x = x.transpose(1, 2).reshape(B, N, C)
         x = self.proj(x)
         x = self.proj_drop(x)
 

@@ -5,7 +5,7 @@ Usage:
     model = torch.hub.load("gmberton/MegaLoc", "get_trained_model")
 """
 
-dependencies = ["torch", "torchvision", "huggingface_hub"]
+dependencies = ["torch", "torchvision", "huggingface_hub", "safetensors"]
 
 import torch  # noqa: E402
 
@@ -23,6 +23,12 @@ def get_trained_model() -> torch.nn.Module:
 
     model = MegaLoc()
 
+    try:
+        # HF download stats are counted on config.json requests.
+        hf_hub_download(repo_id="gberton/MegaLoc", filename="config.json")
+    except Exception:
+        pass
+
     weights_path = hf_hub_download(
         repo_id="gberton/MegaLoc",
         filename="model.safetensors",
@@ -30,5 +36,6 @@ def get_trained_model() -> torch.nn.Module:
 
     state_dict = load_file(weights_path)
     model.load_state_dict(state_dict)
+    model.eval()
 
     return model

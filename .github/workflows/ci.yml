@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+      - name: Smoke test (random weights, no download)
+        run: |
+          python - <<'EOF'
+          import torch
+          from megaloc_model import MegaLoc
+
+          model = MegaLoc().eval()
+          with torch.inference_mode():
+              out = model(torch.randn(2, 3, 322, 406))
+          assert out.shape == (2, 8448), out.shape
+          assert torch.allclose(out.norm(dim=1), torch.ones(2), atol=1e-5)
+
+          import hubconf
+          assert callable(hubconf.get_trained_model)
+          print("OK")
+          EOF
